@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Willingness - Online Donation Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <a href="index.html" class="logo">willingness<span>.</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#causes">Causes</a>
+      <span id="authNavContainer">
+        <button class="btn-primary" onclick="openModal('authModal')">Log in / Sign up</button>
+      </span>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <h1>Urgent!! Help the flood-affected people of Bihar</h1>
+      <p>Create sustained impact. Support verified projects. Save tax. Cancel anytime.</p>
+      <br>
+      <button class="btn-primary" onclick="checkAuthAndDonate('Bihar Flood Relief')">Donate now</button>
+    </div>
+  </section>
+
+  <!-- Live Donation Statistics Banner -->
+  <section style="background: white; padding: 30px 20px; border-bottom: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; gap: 20px;">
+      <div>
+        <h4 style="color: #6b7280; font-size: 14px; text-transform: uppercase;">Total Funds Raised</h4>
+        <p id="homeTotalRaised" style="font-size: 28px; font-weight: bold; color: #b45309; margin-top: 5px;">₹0</p>
+      </div>
+      <div>
+        <h4 style="color: #6b7280; font-size: 14px; text-transform: uppercase;">Platform Goal</h4>
+        <p style="font-size: 28px; font-weight: bold; color: #1f2937; margin-top: 5px;">₹50,00,000</p>
+      </div>
+      <div>
+        <h4 style="color: #6b7280; font-size: 14px; text-transform: uppercase;">Total Donors</h4>
+        <p id="homeTotalDonors" style="font-size: 28px; font-weight: bold; color: #059669; margin-top: 5px;">0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Causes Grid Section -->
+  <section id="causes" class="causes-section">
+    <h2>Featured Causes & Active Campaigns</h2>
+    
+    <!-- Admin Created Campaigns Injected Here -->
+    <div id="adminCustomCausesContainer" class="causes-grid" style="margin-bottom: 25px;"></div>
+
+    <div class="causes-grid">
+      <!-- Cause 1 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Girl Education">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_1">Mission Every Girl in School</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Support education for underprivileged young girls across rural India.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_1">₹0</b></span>
+                <span id="donors_1">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_1">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_1" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Mission Every Girl in School')">Donate ₹1,000</button>
+        </div>
+      </div>
+
+      <!-- Cause 2 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Medical Support">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_2">Emergency Medical Support for Elders</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Provide critical medicine and healthcare to senior citizens.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_2">₹0</b></span>
+                <span id="donors_2">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_2">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_2" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Emergency Medical Support for Elders')">Donate ₹1,000</button>
+        </div>
+      </div>
+
+      <!-- Cause 3 (Fixed Guaranteed Image) -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Disaster Relief Food Kits">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_3">Disaster Relief Food Kits</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Distribute emergency nutrition packs and dry rations to families.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_3">₹0</b></span>
+                <span id="donors_3">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_3">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_3" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Disaster Relief Food Kits')">Donate ₹500</button>
+        </div>
+      </div>
+
+      <!-- Cause 4 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Rural Schooling">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_4">Digital Classrooms for Rural Schools</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Equip village schools with computers and internet facilities.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_4">₹0</b></span>
+                <span id="donors_4">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_4">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_4" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Digital Classrooms for Rural Schools')">Donate ₹1,500</button>
+        </div>
+      </div>
+
+      <!-- Cause 5 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb9?auto=format&fit=crop&w=600&q=80" alt="Book Donation">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_5">Library Books for Tribal Youth</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Build community reading spaces and supply text books.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_5">₹0</b></span>
+                <span id="donors_5">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_5">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_5" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Library Books for Tribal Youth')">Donate ₹600</button>
+        </div>
+      </div>
+
+      <!-- Cause 6 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="Clean Water">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_6">Clean Drinking Water Plants</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Install RO water purifiers in drought-prone villages.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_6">₹0</b></span>
+                <span id="donors_6">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_6">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_6" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Clean Drinking Water Plants')">Donate ₹2,000</button>
+        </div>
+      </div>
+
+      <!-- Cause 7 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?auto=format&fit=crop&w=600&q=80" alt="Animal Shelter">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_7">Stray Animal Rescue & Care</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Provide medical treatment and food to injured stray animals.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_7">₹0</b></span>
+                <span id="donors_7">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_7">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_7" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Stray Animal Rescue & Care')">Donate ₹750</button>
+        </div>
+      </div>
+
+      <!-- Cause 8 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1618588507085-c79565432917?auto=format&fit=crop&w=600&q=80" alt="Tree Plantation">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_8">Green Earth Afforestation Drive</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Plant native saplings to fight deforestation and carbon emissions.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_8">₹0</b></span>
+                <span id="donors_8">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_8">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_8" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Green Earth Afforestation Drive')">Donate ₹500</button>
+        </div>
+      </div>
+
+      <!-- Cause 9 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80" alt="Disaster Relief">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_9">Emergency Cyclone Relief Kits</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Distribute dry rations, tents, and medical kits to families.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_9">₹0</b></span>
+                <span id="donors_9">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_9">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_9" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Emergency Cyclone Relief Kits')">Donate ₹1,200</button>
+        </div>
+      </div>
+
+      <!-- Cause 10 -->
+      <div class="cause-card">
+        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80" alt="Sports Youth">
+        <div class="cause-info">
+          <div>
+            <h3 id="causeTitle_10">Sports Equipment for Rural Kids</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 8px;">Empower village children by providing kits, shoes, and grounds.</p>
+            <div class="progress-container">
+              <div class="cause-stats-row">
+                <span>Raised: <b id="raised_10">₹0</b></span>
+                <span id="donors_10">0 Donors</span>
+              </div>
+              <div class="cause-stats-row">
+                <span>Progress</span>
+                <span id="percent_10">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div id="bar_10" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="checkAuthAndDonate('Sports Equipment for Rural Kids')">Donate ₹800</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">About Willingness</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Indian Festival Calendar</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Fundraiser Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Reach out</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Start a Fundraiser for</h4>
+        <ul>
+          <li><a href="#">NGO</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Donate to</h4>
+        <ul>
+          <li><a href="#">Social Causes</a></li>
+          <li><a href="#">NGOs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="currency-dropdown">INR (₹) ▼</div>
+        <div class="social-icons">
+          <span>📘</span> <span>🐦</span> <span>📸</span> <span>💼</span> <span>▶️</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer-box">
+      <strong>Disclaimer</strong><br>
+      Use of children's information including images, videos, testimonials, etc. in the Campaign is necessary for creating awareness about the charitable cause in order to bring traction to the said charitable cause and obtain donations which can then be used for charitable activities. Information is used and processed with valid consent. This statement is issued in compliance with the Consumer Protection Act, 2019, as amended from time to time.
+    </div>
+
+    <div class="footer-bottom">
+      <div>© Willingness.</div>
+      <div class="footer-bottom-links">
+        <span>Terms</span>
+        <span>Updated on 13 August, 2026</span>
+        <span>Privacy Policy</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login / Signup Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
+      <h2 id="modalTitle" style="margin-bottom: 15px;">Login to Willingness</h2>
+      
+      <div id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" placeholder="e.g. rajesh.kumar@gmail.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="********">
+        </div>
+        <button class="btn-primary" style="width: 100%;" onclick="handleLogin()">Login</button>
+        <p style="margin-top: 15px; text-align: center; font-size: 14px;">
+          Don't have an account? <a href="#" onclick="toggleAuthMode(true)" style="color:#d97706;">Sign up</a>
+        </p>
+      </div>
+
+      <div id="signupForm" style="display: none;">
+        <div class="form-group">
+          <label>Full Name (Indian Name)</label>
+          <input type="text" id="signupName" placeholder="e.g. Aarav Sharma">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="signupEmail" placeholder="e.g. aarav.sharma@gmail.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signupPassword" placeholder="********">
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="signupRole" style="width:100%; padding: 10px; border:1px solid #ddd; border-radius:4px;">
+            <option value="user">User / Donor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button class="btn-primary" style="width: 100%;" onclick="handleSignup()">Register</button>
+        <p style="margin-top: 15px; text-align: center; font-size: 14px;">
+          Already have an account? <a href="#" onclick="toggleAuthMode(false)" style="color:#d97706;">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
